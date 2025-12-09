@@ -6,7 +6,7 @@ import lombok.Getter;
 @Getter
 public abstract class BaseCommand<T> {
 
-    @TargetAggregateIdentifier // "Endereço" do destinatário deste comando
+    @TargetAggregateIdentifier
     private final T id;
 
     public BaseCommand(T id) {
