@@ -15,6 +15,14 @@
 
 O módulo **Sales API** é responsável pelo ciclo de vida dos pedidos de venda na rede Pet Friends. Diferente de arquiteturas CRUD tradicionais, este projeto utiliza **Event Sourcing** para garantir auditabilidade total e **CQRS** (Command Query Responsibility Segregation) para escalar operações de leitura e escrita independentemente.
 
+---
+
+## 📚 Documentação Completa
+Para detalhes profundos sobre as 12 questões arquiteturais e decisões de design, consulte o PDF oficial:
+👉 **[Baixar Guia de Arquitetura (PDF)](docs/PetFriends_CQRS_Guide.pdf)**
+
+---
+
 ### Mapa de Contexto
 
 O serviço se situa no contexto de suporte a vendas, integrando-se com Pagamentos e Notificações dentro do ecossistema Pet Friends.
