@@ -20,12 +20,25 @@ O módulo **Sales API** é responsável pelo ciclo de vida dos pedidos de venda 
 O serviço se situa no contexto de suporte a vendas, integrando-se com Pagamentos e Notificações dentro do ecossistema Pet Friends.
 
 ```mermaid
+%%{init: {
+  "theme": "neutral",
+  "themeVariables": {
+    "background": "#ffffff",
+    "primaryTextColor": "#1e1e1e",
+    "lineColor": "#333333",
+    "fontFamily": "Cascadia Code, sans-serif",
+    "fontSize": "15px",
+    "clusterBkg": "#f9fafc",
+    "clusterBorder": "#d0d0d0",
+    "edgeLabelBackground":"#ffffff"
+  }
+}}%%
 graph TD
-    classDef core fill:#a3c2c2,stroke:#333,stroke-width:2px;
-    classDef supporting fill:#e6f2ff,stroke:#333,stroke-width:1px;
-    classDef generic fill:#f9f9f9,stroke:#333,stroke-width:1px,stroke-dasharray: 5 5;
+    classDef core fill:#b5d9d9,stroke:#333,stroke-width:2px,color:#111;
+    classDef supporting fill:#e6f2ff,stroke:#666,stroke-width:1.2px,color:#111;
+    classDef generic fill:#f9f9f9,stroke:#999,stroke-width:1px,stroke-dasharray: 5 5,color:#111;
 
-    subgraph PetFriendsSystem [Ecossistema Pet Friends]
+    subgraph PetFriendsSystem [🐾 Ecossistema Pet Friends]
         Agendamento(Agendamento):::core
         Clientes(Clientes):::supporting
         Vendas(Vendas / Catálogo):::supporting
@@ -36,6 +49,7 @@ graph TD
     Clientes -->|U/D| Vendas
     Vendas -->|U/D| Pagamentos
     Vendas -->|Pub Eventos| Notificacoes
+
 ```
 
 ---
@@ -51,16 +65,29 @@ O projeto segue estritamente os princípios de **Domain-Driven Design (DDD)** e 
 #### Fluxo de Dados (CQRS)
 
 ```mermaid
+%%{init: {
+  "theme": "neutral",
+  "themeVariables": {
+    "background": "#ffffff",
+    "primaryTextColor": "#1e1e1e",
+    "lineColor": "#333333",
+    "fontFamily": "Cascadia Code, Consolas, monospace",
+    "fontSize": "15px",
+    "edgeLabelBackground":"#f9f9f9",
+    "clusterBkg": "#f5f7fb",
+    "clusterBorder": "#cccccc"
+  }
+}}%%
 flowchart LR
-    user((Cliente))
+    user((🧍‍♂️ Cliente))
 
-    subgraph Write [Write Model]
+    subgraph Write [📦 Write Model]
         CC[Controller] --> CB[Command Bus]
         CB --> Agg[Agregado Pedido]
         Agg --> ES[(Event Store)]
     end
 
-    subgraph Read [Read Model]
+    subgraph Read [📗 Read Model]
         EH[Projector]
         DB[(H2 Database)]
         QC[Query Controller]
@@ -72,8 +99,8 @@ flowchart LR
     user -->|GET| QC
     QC -->|Select| DB
 
-    classDef cmd fill:#ffcccc,stroke:#333;
-    classDef qry fill:#ccffcc,stroke:#333;
+    classDef cmd fill:#ffdddd,stroke:#444,stroke-width:1.5px,color:#111;
+    classDef qry fill:#ddffdd,stroke:#444,stroke-width:1.5px,color:#111;
     class CC,CB,Agg,ES cmd;
     class EH,DB,QC qry;
 ```
@@ -81,6 +108,31 @@ flowchart LR
 #### Sequência de Criação de Pedido
 
 ```mermaid
+%%{init: {
+  "theme": "neutral",
+  "themeVariables": {
+    "background": "#ffffff",
+    "primaryColor": "#e8f4fa",
+    "primaryTextColor": "#1e1e1e",
+    "secondaryColor": "#d4eaf7",
+    "secondaryTextColor": "#1a1a1a",
+    "actorTextColor": "#000000",
+    "actorBorder": "#666666",
+    "actorBkg": "#f5f9fc",
+    "lineColor": "#333333",
+    "signalColor": "#222222",
+    "sequenceNumberColor": "#ffffff",
+    "labelBoxBkgColor": "#ffffff",
+    "labelBoxBorderColor": "#999999",
+    "noteBkgColor": "#f0f0f0",
+    "noteTextColor": "#111111",
+    "activationBorderColor": "#888888",
+    "activationBkgColor": "#d6ebff",
+    "fontFamily": "Cascadia Code, Consolas, monospace",
+    "fontSize": "15px"
+  },
+  "themeCSS": ".mermaid { background-color: #ffffff; color: #1e1e1e; }"
+}}%%
 sequenceDiagram
     participant Client as Cliente REST
     participant API as CommandController
