@@ -17,12 +17,6 @@ O módulo **Sales API** é responsável pelo ciclo de vida dos pedidos de venda 
 
 ---
 
-## 📚 Documentação Completa
-Para detalhes profundos sobre as 12 questões arquiteturais e decisões de design, consulte o PDF oficial:
-👉 **[Baixar Guia de Arquitetura (PDF)](docs/PetFriends_CQRS_Guide.pdf)**
-
----
-
 ### Mapa de Contexto
 
 O serviço se situa no contexto de suporte a vendas, integrando-se com Pagamentos e Notificações dentro do ecossistema Pet Friends.
@@ -59,6 +53,12 @@ graph TD
     Vendas -->|Pub Eventos| Notificacoes
 
 ```
+
+---
+
+## 📚 Documentação Completa
+Para detalhes profundos sobre as 12 questões arquiteturais e decisões de design, consulte o PDF oficial:
+👉 **[Baixar Guia de Arquitetura (PDF)](docs/PetFriends_CQRS_Guide.pdf)**
 
 ---
 
